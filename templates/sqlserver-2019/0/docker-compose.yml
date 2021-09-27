@@ -8,6 +8,10 @@ services:
       MSSQL_PID: ${mssql_pid}
       TZ: America/Sao_Paulo
       MSSQL_AGENT_ENABLED: True
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-${mssql_password}", "-Q", "select 1"]
+      interval: 1s
+      retries: 20
     stdin_open: true
     volumes:
     - mssqlvolume:/var/opt/mssql
@@ -17,6 +21,7 @@ services:
     tty: true
     ports:
     - ${mssql_port}:1433/tcp
+    
 
 volumes:
   mssqlvolume:
