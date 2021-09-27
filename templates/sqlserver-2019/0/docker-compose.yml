@@ -1,4 +1,4 @@
-version: 3
+version: 2
 
 services:
   mssql-linux:
@@ -18,10 +18,6 @@ services:
     tty: true
     ports:
     - ${mssql_port}:1433/tcp
-    healthcheck:
-      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-Pr@ch@#SeTaLouc0##", "-Q", "select 1"]
-      interval: 5s
-      retries: 20
     
 volumes:
   mssqlvolume:
