@@ -10,7 +10,7 @@ services:
       MSSQL_AGENT_ENABLED: True
     healthcheck:
       test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-Usa", "-${mssql_password}", "-Q", "select 1"]
-      interval: 1s
+      interval: 5s
       retries: 20
     stdin_open: true
     volumes:
