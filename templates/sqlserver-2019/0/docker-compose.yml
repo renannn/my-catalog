@@ -1,0 +1,29 @@
+version: '2'
+services:
+  mssql-linux:
+    image: mcr.microsoft.com/mssql/server:latest
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: ${mssql_password}
+      MSSQL_PID: ${mssql_pid}
+      TZ: America/Sao_Paulo
+      MSSQL_AGENT_ENABLED: True
+    stdin_open: true
+    volumes:
+    - mssqlvolume:/var/opt/mssql
+    - sqldata:/var/opt/sqlserver/data
+    - sqllog:/var/opt/sqlserver/log
+    - sqlbackup:/var/opt/sqlserver/backup
+    tty: true
+    ports:
+    - ${mssql_port}:1433/tcp
+
+volumes:
+  mssqlvolume:
+    driver: ${VOLUME_DRIVER}
+  sqlbackup:
+    driver: ${BACKUP_DRIVER}
+  sqldata:
+    driver: ${DATA_DRIVER}
+  sqllog:
+    driver: ${LOG_DRIVER}

@@ -1,0 +1,6 @@
+name: Microsoft Sqlserver
+description: |
+ Microsoft sqlserver latest docker edition
+version: 2021-01
+maintainer: "Renan Marcel Paulino leite<renannn@outlook.com>"
+category: Databases
